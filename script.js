@@ -7,15 +7,16 @@ yesBtn.addEventListener("click", () => {
   message.innerHTML =
     "YAYYY 🥹💖<br>Lakshu, you just made me the happiest person alive 😘💞";
 
-  // Hearts + kisses
+  // Hearts & kisses
   for (let i = 0; i < 20; i++) createHeart();
   for (let i = 0; i < 15; i++) createKiss();
 
-  yesBtn.disabled = true;
+  // Remove buttons after YES
+  yesBtn.style.display = "none";
   noBtn.style.display = "none";
 });
 
-// Move NO button 😈
+// NO button movement 😈
 function moveNoButton() {
   const btnWidth = noBtn.offsetWidth;
   const btnHeight = noBtn.offsetHeight;
@@ -28,9 +29,9 @@ function moveNoButton() {
   noBtn.style.top = `${y}px`;
 }
 
-noBtn.addEventListener("mouseover", moveNoButton);
-noBtn.addEventListener("touchstart", moveNoButton);
-noBtn.addEventListener("click", moveNoButton);
+noBtn.addEventListener("mouseover", moveNoButton);   // desktop
+noBtn.addEventListener("touchstart", moveNoButton); // mobile
+noBtn.addEventListener("click", moveNoButton);      // backup
 
 // 💖 Heart animation
 function createHeart() {
@@ -60,7 +61,7 @@ function createKiss() {
   setTimeout(() => kiss.remove(), 3500);
 }
 
-// Animation style
+// Animation keyframes
 const style = document.createElement("style");
 style.innerHTML = `
 @keyframes floatUp {
