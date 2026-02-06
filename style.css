@@ -1,0 +1,115 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Pacifico&display=swap');
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  height: 100vh;
+  background: linear-gradient(135deg, #ffb6c1, #ffd1dc, #ffe4e1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Poppins', sans-serif;
+  overflow: hidden;
+}
+
+/* Floating hearts */
+body::before {
+  content: "💖 💕 💗 💓 💞";
+  position: absolute;
+  top: -10%;
+  font-size: 3rem;
+  animation: float 10s linear infinite;
+  opacity: 0.3;
+}
+
+@keyframes float {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(120vh); }
+}
+
+.card {
+  background: rgba(255, 255, 255, 0.95);
+  padding: 45px 40px;
+  border-radius: 30px;
+  text-align: center;
+  box-shadow: 0 20px 50px rgba(255, 105, 135, 0.4);
+  animation: popIn 1s ease;
+  max-width: 320px;
+}
+
+@keyframes popIn {
+  0% {
+    transform: scale(0.5);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+h1 {
+  font-family: 'Pacifico', cursive;
+  color: #ff4d6d;
+  font-size: 2.2rem;
+  margin-bottom: 15px;
+}
+
+p {
+  font-size: 1.1rem;
+  color: #555;
+  margin-bottom: 25px;
+}
+
+.buttons {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+}
+
+button {
+  padding: 12px 22px;
+  border: none;
+  border-radius: 25px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+#yes {
+  background: linear-gradient(135deg, #ff4d6d, #ff758f);
+  color: white;
+  box-shadow: 0 10px 20px rgba(255, 77, 109, 0.4);
+}
+
+#yes:hover {
+  transform: scale(1.1);
+  box-shadow: 0 15px 25px rgba(255, 77, 109, 0.6);
+}
+
+#no {
+  background: #f1f1f1;
+  color: #777;
+}
+
+#no:hover {
+  background: #ddd;
+}
+
+#message {
+  margin-top: 25px;
+  font-size: 1.2rem;
+  color: #ff4d6d;
+  font-weight: 600;
+  animation: fadeIn 1s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
