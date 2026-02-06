@@ -2,12 +2,12 @@ const yesBtn = document.getElementById("yes");
 const noBtn = document.getElementById("no");
 const message = document.getElementById("message");
 
-// When YES is clicked 💖
+// YES button 💖
 yesBtn.addEventListener("click", () => {
-  message.innerHTML = "YAYYY 🥹💖<br>Lakshu, you just made me the happiest person alive 😘💞";
+  message.innerHTML =
+    "YAYYY 🥹💖<br>Lakshu, you just made me the happiest person alive 😘💞";
 
-  // Confetti effect (simple hearts)
-  for (let i = 0; i < 25; i++) {
+  for (let i = 0; i < 30; i++) {
     createHeart();
   }
 
@@ -15,17 +15,25 @@ yesBtn.addEventListener("click", () => {
   noBtn.style.display = "none";
 });
 
-// NO button runs away 😈
-noBtn.addEventListener("mouseover", () => {
-  const x = Math.random() * (window.innerWidth - noBtn.offsetWidth);
-  const y = Math.random() * (window.innerHeight - noBtn.offsetHeight);
+// Function to move NO button 😈
+function moveNoButton() {
+  const btnWidth = noBtn.offsetWidth;
+  const btnHeight = noBtn.offsetHeight;
 
-  noBtn.style.position = "absolute";
+  const x = Math.random() * (window.innerWidth - btnWidth);
+  const y = Math.random() * (window.innerHeight - btnHeight);
+
+  noBtn.style.position = "fixed";
   noBtn.style.left = `${x}px`;
   noBtn.style.top = `${y}px`;
-});
+}
 
-// Create floating hearts 💕
+// Mobile + Desktop events
+noBtn.addEventListener("mouseover", moveNoButton);   // desktop
+noBtn.addEventListener("touchstart", moveNoButton); // mobile
+noBtn.addEventListener("click", moveNoButton);      // extra safety
+
+// Hearts animation 💕
 function createHeart() {
   const heart = document.createElement("div");
   heart.innerText = "💖";
@@ -36,23 +44,15 @@ function createHeart() {
   heart.style.animation = "floatUp 3s linear forwards";
   document.body.appendChild(heart);
 
-  setTimeout(() => {
-    heart.remove();
-  }, 3000);
+  setTimeout(() => heart.remove(), 3000);
 }
 
-// Heart animation
+// Heart float animation
 const style = document.createElement("style");
 style.innerHTML = `
 @keyframes floatUp {
-  from {
-    transform: translateY(0);
-    opacity: 1;
-  }
-  to {
-    transform: translateY(-120vh);
-    opacity: 0;
-  }
+  from { transform: translateY(0); opacity: 1; }
+  to { transform: translateY(-120vh); opacity: 0; }
 }
 `;
 document.head.appendChild(style);
