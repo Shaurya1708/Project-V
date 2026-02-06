@@ -7,15 +7,15 @@ yesBtn.addEventListener("click", () => {
   message.innerHTML =
     "YAYYY 🥹💖<br>Lakshu, you just made me the happiest person alive 😘💞";
 
-  for (let i = 0; i < 30; i++) {
-    createHeart();
-  }
+  // Hearts + kisses
+  for (let i = 0; i < 20; i++) createHeart();
+  for (let i = 0; i < 15; i++) createKiss();
 
   yesBtn.disabled = true;
   noBtn.style.display = "none";
 });
 
-// Function to move NO button 😈
+// Move NO button 😈
 function moveNoButton() {
   const btnWidth = noBtn.offsetWidth;
   const btnHeight = noBtn.offsetHeight;
@@ -28,12 +28,11 @@ function moveNoButton() {
   noBtn.style.top = `${y}px`;
 }
 
-// Mobile + Desktop events
-noBtn.addEventListener("mouseover", moveNoButton);   // desktop
-noBtn.addEventListener("touchstart", moveNoButton); // mobile
-noBtn.addEventListener("click", moveNoButton);      // extra safety
+noBtn.addEventListener("mouseover", moveNoButton);
+noBtn.addEventListener("touchstart", moveNoButton);
+noBtn.addEventListener("click", moveNoButton);
 
-// Hearts animation 💕
+// 💖 Heart animation
 function createHeart() {
   const heart = document.createElement("div");
   heart.innerText = "💖";
@@ -47,12 +46,32 @@ function createHeart() {
   setTimeout(() => heart.remove(), 3000);
 }
 
-// Heart float animation
+// 😘 Kiss animation
+function createKiss() {
+  const kiss = document.createElement("div");
+  kiss.innerText = "😘";
+  kiss.style.position = "fixed";
+  kiss.style.left = Math.random() * 100 + "vw";
+  kiss.style.bottom = "-20px";
+  kiss.style.fontSize = Math.random() * 22 + 22 + "px";
+  kiss.style.animation = "floatUp 3.5s linear forwards";
+  document.body.appendChild(kiss);
+
+  setTimeout(() => kiss.remove(), 3500);
+}
+
+// Animation style
 const style = document.createElement("style");
 style.innerHTML = `
 @keyframes floatUp {
-  from { transform: translateY(0); opacity: 1; }
-  to { transform: translateY(-120vh); opacity: 0; }
+  from {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  to {
+    transform: translateY(-120vh);
+    opacity: 0;
+  }
 }
 `;
 document.head.appendChild(style);
